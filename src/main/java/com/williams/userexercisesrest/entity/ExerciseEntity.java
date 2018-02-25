@@ -1,5 +1,10 @@
 package com.williams.userexercisesrest.entity;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,9 +13,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "EXERCISE")
-public class ExerciseEntity {
+public @Data class ExerciseEntity {
 
-    public ExerciseEntity() {}
+    public ExerciseEntity() {
+    }
 
     public ExerciseEntity(String description) {
         this.description = description;
@@ -19,24 +25,14 @@ public class ExerciseEntity {
     @Id
     @GeneratedValue
     @Column(name = "ID")
+    @Getter
+    @Setter
     private int id;
 
     @Column(name = "DESCRIPTION")
+    @Length(min = 1, max= 255)
+    @Getter
+    @Setter
     private String description;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

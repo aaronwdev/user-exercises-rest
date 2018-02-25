@@ -1,5 +1,9 @@
 package com.williams.userexercisesrest.entity;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +13,29 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "USER_EXERCISE_LOG")
-public class UserExerciseLogEntity {
+public @Data class UserExerciseLogEntity {
+
+    @Id
+    @GeneratedValue
+    @Column(name = "ID")
+    @Getter
+    @Setter
+    private int id;
+
+    @Column(name = "USER_ID")
+    @Getter
+    @Setter
+    private int userID;
+
+    @Column(name = "EXERCISE_ID")
+    @Getter
+    @Setter
+    private int exerciseId;
+
+    @Column(name = "DATE")
+    @Getter
+    @Setter
+    private Date date;
 
     public UserExerciseLogEntity() {
     }
@@ -20,49 +46,5 @@ public class UserExerciseLogEntity {
         this.date = date;
     }
 
-    @Id
-    @GeneratedValue
-    @Column(name = "ID")
-    private int id;
 
-    @Column(name = "USER_ID")
-    private int userID;
-
-    @Column(name = "EXERCISE_ID")
-    private int exerciseId;
-
-    @Column(name = "DATE")
-    private Date date;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    public int getExerciseId() {
-        return exerciseId;
-    }
-
-    public void setExerciseId(int exerciseId) {
-        this.exerciseId = exerciseId;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
 }

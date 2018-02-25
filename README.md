@@ -11,9 +11,9 @@ Import as maven project.
 To run create a run configuration:
  Main Class:            "com.williams.userexercisesrest.UserExercisesRestApplication"
  Working Directory:     "[Your Project Location]\user-exercises-rest"
- Classpath:             "user-excerises-rest"
+ Classpath:             "user-exercises-rest"
 
-### Supporting Documents
+### Supporting Repositories
 
 The following testing frameworks can be used to test this service when running.
 

@@ -1,5 +1,8 @@
 package com.williams.userexercisesrest.entity;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.Column;
@@ -10,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USER")
-public class UserEntity {
+public @Data class UserEntity {
 
     public UserEntity() {
     }
@@ -23,37 +26,20 @@ public class UserEntity {
     @Id
     @GeneratedValue
     @Column(name = "ID")
+    @Getter
+    @Setter
     private int id;
 
     @Column(name = "NAME")
-    @Length(min=1, max=35)
+    @Length(min = 1, max = 35)
+    @Getter
+    @Setter
     private String name;
 
     @Column(name = "POSTCODE")
-    @Length(min=6, max=8)
+    @Length(min = 6, max = 8)
+    @Getter
+    @Setter
     private String postcode;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPostcode() {
-        return postcode;
-    }
-
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
-    }
 }

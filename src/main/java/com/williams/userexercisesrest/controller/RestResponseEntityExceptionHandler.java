@@ -1,6 +1,5 @@
 package com.williams.userexercisesrest.controller;
 
-import com.google.gson.Gson;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,8 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     private ErrorResponse error = new ErrorResponse();
 
-    @ExceptionHandler(value = { ConstraintViolationException.class})
+    @ExceptionHandler(value = {ConstraintViolationException.class,
+            NumberFormatException.class})
     protected ResponseEntity<Object> handleConstraint(RuntimeException ex, WebRequest request) {
         error.setError("Unable to process input");
         return handleExceptionInternal(ex, error,
