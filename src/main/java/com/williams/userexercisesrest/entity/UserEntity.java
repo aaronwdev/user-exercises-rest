@@ -15,14 +15,6 @@ import javax.persistence.Table;
 @Table(name = "USER")
 public @Data class UserEntity {
 
-    public UserEntity() {
-    }
-
-    public UserEntity(String name, String postcode) {
-        this.name = name;
-        this.postcode = postcode;
-    }
-
     @Id
     @GeneratedValue
     @Column(name = "ID")
@@ -41,5 +33,13 @@ public @Data class UserEntity {
     @Getter
     @Setter
     private String postcode;
+
+    public UserEntity() {
+    }
+
+    public UserEntity(String name, String postcode) {
+        this.name = name;
+        this.postcode = postcode;
+    }
 
 }

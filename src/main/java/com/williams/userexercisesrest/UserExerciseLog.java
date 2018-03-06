@@ -4,25 +4,25 @@ import java.sql.Date;
 
 public class UserExerciseLog {
 
-    private int logId;
+    private int id;
     private int exerciseId;
     private Date date;
 
-    private int userId;
+    private int userID;
     private String userName;
     private String description;
 
     @Override
     public String toString() {
-        return "The log ID is " + getLogId() + " and this exercice ID is " + getExerciseId();
+        return "The log ID is " + getId() + " and this exercise ID is " + getExerciseId();
     }
 
-    public int getLogId() {
-        return logId;
+    public int getId() {
+        return id;
     }
 
-    public void setLogId(int logId) {
-        this.logId = logId;
+    public void setId(int logId) {
+        this.id = logId;
     }
 
     public int getExerciseId() {
@@ -41,12 +41,12 @@ public class UserExerciseLog {
         this.date = date;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUserID() {
+        return userID;
     }
 
     public void setUserId(int userId) {
-        this.userId = userId;
+        this.userID = userId;
     }
 
     public String getUserName() {

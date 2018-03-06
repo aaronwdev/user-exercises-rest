@@ -15,12 +15,6 @@ import javax.persistence.Table;
 @Table(name = "EXERCISE")
 public @Data class ExerciseEntity {
 
-    public ExerciseEntity() {
-    }
-
-    public ExerciseEntity(String description) {
-        this.description = description;
-    }
 
     @Id
     @GeneratedValue
@@ -34,5 +28,12 @@ public @Data class ExerciseEntity {
     @Getter
     @Setter
     private String description;
+
+    public ExerciseEntity() {
+    }
+
+    public ExerciseEntity(String description) {
+        this.description = description;
+    }
 
 }

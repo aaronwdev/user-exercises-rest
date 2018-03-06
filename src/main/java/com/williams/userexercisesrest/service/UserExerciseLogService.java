@@ -31,7 +31,7 @@ public class UserExerciseLogService {
         UserExerciseLog userExerciseLog = new UserExerciseLog();
         UserExerciseLogEntity logEntity = userExerciseLogRepository.findById(id);
 
-        userExerciseLog.setLogId(logEntity.getId());
+        userExerciseLog.setId(logEntity.getId());
         userExerciseLog.setExerciseId(logEntity.getExerciseId());
         userExerciseLog.setDate(logEntity.getDate());
         userExerciseLog.setUserId(logEntity.getUserID());
