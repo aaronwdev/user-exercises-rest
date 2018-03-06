@@ -1,5 +1,6 @@
 package com.williams.userexercisesrest.controller;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +17,19 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     private ErrorResponse error = new ErrorResponse();
 
     @ExceptionHandler(value = {ConstraintViolationException.class,
-            NumberFormatException.class})
+            NumberFormatException.class,
+            DataIntegrityViolationException.class})
     protected ResponseEntity<Object> handleConstraint(RuntimeException ex, WebRequest request) {
         error.setError("Unable to process input");
         return handleExceptionInternal(ex, error,
                 new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY, request);
+    }
+
+    @ExceptionHandler(value = {NullPointerException.class})
+    protected ResponseEntity<Object> handleNullPointer(RuntimeException ex, WebRequest request) {
+        error.setError("Not found!");
+        return handleExceptionInternal(ex, error,
+                new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
 }
