@@ -8,7 +8,7 @@ public class UserExerciseLog {
     private int exerciseId;
     private Date date;
 
-    private int userID;
+    private int userId;
     private String userName;
     private String description;
 
@@ -41,12 +41,12 @@ public class UserExerciseLog {
         this.date = date;
     }
 
-    public int getUserID() {
-        return userID;
+    public int getUserId() {
+        return userId;
     }
 
     public void setUserId(int userId) {
-        this.userID = userId;
+        this.userId = userId;
     }
 
     public String getUserName() {

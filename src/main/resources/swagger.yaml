@@ -14,8 +14,8 @@ produces:
 paths:
   /api/exercises:
     get:
-      summary: List all exercises
-      operationId: returnAllExercises
+      summary: Find all exercises
+      operationId: findAllExercises
       tags:
         - Exercises
       responses:
@@ -24,43 +24,57 @@ paths:
           schema:
             $ref: '#/definitions/Exercises'
     post:
-      summary: Create an exercise
-      operationId: createExercises
+      summary: Save an exercise
+      operationId: saveExercises
       tags:
        - Exercises
       parameters:
         - name: exercise
           in: body
-          description: Exercise to be created
+          description: Exercise to be saved
           required: true
           schema:
             $ref: "#/definitions/Exercise"
       responses:
         "201":
-          description: Created
+          description: Saved
           schema:
             $ref: '#/definitions/Exercise'
   /api/exercises/{id}:
     get:
       summary: Info for a specific exercise
-      operationId: returnExerciseById
+      operationId: findExerciseById
       tags:
         - Exercises
       parameters:
         - name: id
           in: path
           required: true
-          description: The id of the exercise to retrieve
+          description: The id of exercise to retrieve
           type: integer
       responses:
         "200":
           description: OK
           schema:
             $ref: '#/definitions/Exercise'
+    delete:
+      summary: Delete an exercise
+      operationId: deleteExercise
+      tags:
+        - Exercises
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of exercise to deleteUser
+          type: integer
+      responses:
+        "204":
+          description: NO CONTENT
   /api/users:
     get:
-      summary: List all users
-      operationId: returnAllUsers
+      summary: Find all users
+      operationId: findAllUsers
       tags:
         - Users
       responses:
@@ -69,26 +83,26 @@ paths:
           schema:
             $ref: '#/definitions/Users'
     post:
-      summary: Create a user
-      operationId: createUser
+      summary: Save a user
+      operationId: saveUser
       tags:
        - Users
       parameters:
         - name: user
           in: body
-          description: User to be created
+          description: User to be saved
           required: true
           schema:
             $ref: "#/definitions/User"
       responses:
         "201":
-          description: Created
+          description: Saved
           schema:
             $ref: '#/definitions/User'
   /api/users/{id}:
     get:
       summary: Info for a specific user
-      operationId: returnUserById
+      operationId: findUserById
       tags:
         - Users
       parameters:
@@ -101,29 +115,43 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/User'  
+            $ref: '#/definitions/User' 
+    delete:
+      summary: Delete a user
+      operationId: deleteUser
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of user to deleteUser
+          type: integer
+      responses:
+        "204":
+          description: NO CONTENT
   /api/log:
     post:
-      summary: Create a log entry
-      operationId: createLog
+      summary: Save a log entry
+      operationId: saveLog
       tags:
        - Log
       parameters:
         - name: Log
           in: body
-          description: Log to be created
+          description: Log to be saved
           required: true
           schema:
             $ref: "#/definitions/PostLog"
       responses:
         "201":
-          description: Created
+          description: Saved
           schema:
             $ref: '#/definitions/Log'
   /api/log/{id}:
     get:
       summary: Info for a specific user
-      operationId: returnLogById
+      operationId: findLogById
       tags:
         - Log
       parameters:
@@ -137,6 +165,20 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/Log'
+    delete:
+      summary: Delete a log
+      operationId: deleteLog
+      tags:
+        - Log
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of exercise to deleteUser
+          type: integer
+      responses:
+        "204":
+          description: NO CONTENT
 definitions:
   Exercise:
     required:
@@ -173,7 +215,7 @@ definitions:
         - $ref: '#/definitions/User'
   PostLog:
     properties:
-      userID:
+      userId:
         type: integer
         format: int64
       exerciseId:
@@ -189,7 +231,7 @@ definitions:
         type: integer
       date:
         type: string 
-      userID:
+      userId:
         type: integer
         format: int64
       userName:
