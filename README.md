@@ -45,3 +45,14 @@ Rest-assured testing framework: https://bitbucket.org/aaronmwilliams/user-exerci
 
 ### IDE Plugins
 The project uses Lombok. So you will need to install this plugin otherwise you will see compile errors.
+
+### Running Tests on Jenkins
+You can create a Jenkins Build pointing to the `*/jenkinsfile`.
+
+Currently for the API tests the service needs to be running on port 8080.
+
+The Jenkins build will download and install any library dependencies which are required in the local maven repository.
+
+- Junit & Integration
+- Rest-Assured
+- Swagger Client
