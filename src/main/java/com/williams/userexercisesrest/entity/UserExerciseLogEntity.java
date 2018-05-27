@@ -25,7 +25,7 @@ public @Data class UserExerciseLogEntity {
     @Column(name = "USER_ID")
     @Getter
     @Setter
-    private int userID;
+    private int userId;
 
     @Column(name = "EXERCISE_ID")
     @Getter
@@ -41,7 +41,7 @@ public @Data class UserExerciseLogEntity {
     }
 
     public UserExerciseLogEntity(int userId, int exerciseId, Date date) {
-        this.userID = userId;
+        this.userId = userId;
         this.exerciseId = exerciseId;
         this.date = date;
     }

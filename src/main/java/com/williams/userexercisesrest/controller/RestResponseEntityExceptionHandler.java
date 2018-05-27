@@ -1,6 +1,7 @@
 package com.williams.userexercisesrest.controller;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,8 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                 new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY, request);
     }
 
-    @ExceptionHandler(value = {NullPointerException.class})
+    @ExceptionHandler(value = {NullPointerException.class,
+            EmptyResultDataAccessException.class})
     protected ResponseEntity<Object> handleNullPointer(RuntimeException ex, WebRequest request) {
         error.setError("Not found!");
         return handleExceptionInternal(ex, error,

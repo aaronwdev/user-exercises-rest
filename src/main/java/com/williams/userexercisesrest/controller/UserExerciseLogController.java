@@ -2,7 +2,6 @@ package com.williams.userexercisesrest.controller;
 
 import com.williams.userexercisesrest.UserExerciseLog;
 import com.williams.userexercisesrest.entity.UserExerciseLogEntity;
-import com.williams.userexercisesrest.repository.UserExerciseLogRepository;
 import com.williams.userexercisesrest.service.UserExerciseLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,11 +19,8 @@ public class UserExerciseLogController {
     @Autowired
     UserExerciseLogService userExerciseLogService;
 
-    @Autowired
-    UserExerciseLogRepository userExerciseLogRepository;
-
     @RequestMapping(method = RequestMethod.GET, value = "/{logId}")
-    public UserExerciseLog getExerciseLog(@PathVariable Integer logId) {
+    public UserExerciseLog returnExerciseLog(@PathVariable Integer logId) {
         return userExerciseLogService.getLogEntryDetails(logId);
     }
 
@@ -32,10 +28,15 @@ public class UserExerciseLogController {
     @RequestMapping(method = RequestMethod.POST)
     public UserExerciseLog saveExercise(@RequestBody UserExerciseLogEntity userExerciseLogEntity) {
         // TODO Assert the date is valid, if not show response
-        return userExerciseLogService.getLogEntryDetails(userExerciseLogRepository
-                .save(new UserExerciseLogEntity(userExerciseLogEntity.getUserID(),
+        return userExerciseLogService.getLogEntryDetails(userExerciseLogService
+                .saveLogEntry(new UserExerciseLogEntity(userExerciseLogEntity.getUserId(),
                         userExerciseLogEntity.getExerciseId(),
                         userExerciseLogEntity.getDate())).getId());
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{logId}")
+    public void delete(@PathVariable Integer logId) {
+        userExerciseLogService.deleteLogEntry(logId);
+    }
 }
