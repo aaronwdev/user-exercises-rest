@@ -16,6 +16,8 @@ To run create a run configuration:
  
  Or you can run in the terminal `mvn spring-boot:run -Drun.jvmArguments="-Dserver.port=8080"`
 
+To run maven install you will also need to checkout and install `user-exercises-testing-library` https://bitbucket.org/aaronmwilliams/user-exercises-testing-library
+
 ### Running Tests
 All unit tests
 `mvn test "-Dtest=*UnitTest.java"`
