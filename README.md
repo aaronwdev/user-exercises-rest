@@ -5,18 +5,26 @@ A very simple Spring rest webservice to help aid other example test frameworks i
 
 ### Installing and Running
 
-By default port 8080 will be used. 
 
-Import as maven project.
+Import into your IDE as a maven project.
 
-To run create a run configuration:
+**Running via IDE**
+
+Create a run configuration:
  Main Class:            "com.williams.userexercisesrest.UserExercisesRestApplication"
  Working Directory:     "[Your Project Location]\user-exercises-rest"
  Classpath:             "user-exercises-rest"
  
- Or you can run in the terminal `mvn spring-boot:run -Drun.jvmArguments="-Dserver.port=8080"`
+**Running via Terminal**
 
-To run maven install you will also need to checkout and install `user-exercises-testing-library` https://bitbucket.org/aaronmwilliams/user-exercises-testing-library
+ You can run in the terminal `mvn spring-boot:run -Drun.jvmArguments="-Dserver.port=8080"`
+
+**Running via Docker**
+
+`docker build -f Dockerfile -t user-exercises-rest .` then `docker run -d -p 8080:8080 user-exercises-rest`
+
+
+By default port 8080 will be used. 
 
 ### Running Tests
 All unit tests
