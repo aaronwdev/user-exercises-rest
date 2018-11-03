@@ -1,4 +1,4 @@
-# user-exercises-rest
+# user-exercises-rest!
 
 ### Purpose of project
 A very simple Spring rest webservice to help aid other example test frameworks in this repository.
