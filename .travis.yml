@@ -6,3 +6,4 @@ jdk:
 
 script:
   - mvn test "-Dtest=*UnitTest.java"
+  - mvn test "-Dtest=*IntegrationTest.java"
