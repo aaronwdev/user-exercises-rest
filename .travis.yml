@@ -15,13 +15,15 @@ jobs:
     - script: mvn test "-Dtest=*IntegrationTest.java"
       name: "Integration Tests"
 
+    - stage: "Create and run new Docker Image"
+      script:
+       - docker build -f Dockerfile -t user-exercises-rest .
+       - docker run -d -p 8080:8080 user-exercises-rest
+      name: "Create and run new Docker Image"
 
     - stage: "Docker Build"
       script:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker build -f Dockerfile -t user-exercises-rest .
         - docker tag user-exercises-rest aaronmwilliams/user-exercises-rest
         - docker push aaronmwilliams/user-exercises-rest
       name: "Build and publish new docker image"
-
-
