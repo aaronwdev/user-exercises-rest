@@ -18,8 +18,6 @@ before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - echo "Docker Hub credentials are working"
 
-install:
-
 jobs:
   include:
     - stage: "Unit Tests"
