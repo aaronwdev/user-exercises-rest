@@ -18,27 +18,15 @@ before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - echo "Docker Hub credentials are working"
 
+install:
+  - docker build -f Dockerfile -t ${REPO_NAME} .
+  - docker run -d -p 8080:8080 ${REPO_NAME}
+
 jobs:
   include:
-    - stage: "Unit Tests"
-      script: mvn test "-Dtest=*UnitTest.java"
-      name: "Unit Tests"
-    - script: mvn test "-Dtest=*IntegrationTest.java"
-      name: "Integration Tests"
-
-    - script:
-       - docker build -f Dockerfile -t ${REPO_NAME} .
-      after_script:
-        - docker images
-
-    - stage: "Run new Docker Image"
-      script:
-       - docker run -d -p 8080:8080 ${REPO_NAME}
-      name: "Create and run new Docker Image"
-
-    - stage: "Docker Build"
-      script:
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker tag ${REPO_NAME} ${DOCKER_IMAGE_NAME}
-        - docker push ${DOCKER_IMAGE_NAME}
-      name: "Build and publish new docker image"
+    stage: "Docker Build"
+    script:
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - docker tag ${REPO_NAME} ${DOCKER_IMAGE_NAME}
+      - docker push ${DOCKER_IMAGE_NAME}
+    name: "Build and publish new docker image"
