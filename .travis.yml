@@ -17,9 +17,6 @@ jobs:
 
 
     - stage: "Docker Build"
-      script: docker build -f Dockerfile -t user-exercises-rest .
-      name: "Build new docker image"
-
-    - stage: "Docker Run"
-      script: docker run -d -p 8080:8080 user-exercises-rest
-      name: "Run docker image"
+      script:
+        - docker build -f Dockerfile -t user-exercises-rest .
+        - docker run -d -p 8080:8080 user-exercises-rest
