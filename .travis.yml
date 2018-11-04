@@ -19,8 +19,5 @@ jobs:
     - stage: "Docker Build"
       script:
         - docker build -f Dockerfile -t user-exercises-rest .
-        - docker run -d -p 8080:8080 user-exercises-rest
-      name: "Create new docker image and run"
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-    - stage:
-      script: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
