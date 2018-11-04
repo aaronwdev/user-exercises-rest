@@ -56,6 +56,9 @@ Rest-assured testing framework: https://bitbucket.org/aaronmwilliams/user-exerci
 ### IDE Plugins
 The project uses Lombok. So you will need to install this plugin otherwise you will see compile errors.
 
+### Running Tests on Travis
+There is .travis.yml created which runs both the unit and integration tests.
+
 ### Running Tests on Jenkins
 You can create a Jenkins Build pointing to the `*/jenkinsfile`.
 
