@@ -20,6 +20,6 @@ jobs:
       script:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker build -f Dockerfile -t user-exercises-rest .
-        - docker tag user-exercises-rest $DOCKER_USERNAME/user-exercises-rest
-        - docker push $DOCKER_USERNAME/user-exercises-rest
+        - docker tag user-exercises-rest aaronmwilliams/user-exercises-rest
+        - docker push aaronmwilliams/user-exercises-rest
 
