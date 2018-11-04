@@ -24,9 +24,12 @@ install:
 
 jobs:
   include:
-    stage: "Docker Build"
-    script:
-      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker tag ${REPO_NAME} ${DOCKER_IMAGE_NAME}
-      - docker push ${DOCKER_IMAGE_NAME}
-    name: "Build and publish new docker image"
+    - stage: "API Testing"
+      script: git clone https://aaronmwilliams@bitbucket.org/aaronmwilliams/user-exercises-restassured-testing.git
+
+    - stage: "Docker Build"
+      script:
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker tag ${REPO_NAME} ${DOCKER_IMAGE_NAME}
+        - docker push ${DOCKER_IMAGE_NAME}
+      name: "Build and publish new docker image"
