@@ -4,6 +4,11 @@ install: true
 jdk:
   - oraclejdk8
 
+services:
+  - docker
+
 script:
   - mvn test "-Dtest=*UnitTest.java"
   - mvn test "-Dtest=*IntegrationTest.java"
+  - docker build -f Dockerfile -t user-exercises-rest .
+  - docker run -d -p 8080:8080 user-exercises-rest
