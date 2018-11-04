@@ -20,7 +20,7 @@ before_install:
 
 install:
   - docker build -f Dockerfile -t ${REPO_NAME} .
-  - docker run -d -p 8080:8080 ${REPO_NAME}
+  - docker run -p 8080:8080 ${REPO_NAME}
 
 jobs:
   include:
