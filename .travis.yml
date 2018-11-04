@@ -20,4 +20,5 @@ jobs:
       script:
         - docker build -f Dockerfile -t user-exercises-rest .
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker push "$DOCKER_USERNAME"/user-exercises-rest
 
