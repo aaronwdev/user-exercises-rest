@@ -12,7 +12,7 @@ jobs:
     - stage: "Unit Tests"
     name: "Unit Tests"
     script: mvn test "-Dtest=*UnitTest.java"
-    - mvn test "-Dtest=*IntegrationTest.java"
+    - script: mvn test "-Dtest=*IntegrationTest.java"
     - stage: "Docker Build"
     name: "Build and Run via Docker"
     script: docker build -f Dockerfile -t user-exercises-rest .
