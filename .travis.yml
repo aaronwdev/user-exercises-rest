@@ -7,6 +7,14 @@ jdk:
 services:
   - docker
 
+before_install:
+  - echo "Testing Docker Hub credentials"
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - echo "Docker Hub credentials are working"
+
+install:
+  script: docker build -f Dockerfile -t user-exercises-rest .
+
 jobs:
   include:
     - stage: "Unit Tests"
@@ -15,9 +23,8 @@ jobs:
     - script: mvn test "-Dtest=*IntegrationTest.java"
       name: "Integration Tests"
 
-    - stage: "Create and run new Docker Image"
+    - stage: "Run new Docker Image"
       script:
-       - docker build -f Dockerfile -t user-exercises-rest .
        - docker run -d -p 8080:8080 user-exercises-rest
       name: "Create and run new Docker Image"
 
