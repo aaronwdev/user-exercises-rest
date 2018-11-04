@@ -25,7 +25,10 @@ install:
 jobs:
   include:
     - stage: "API Testing"
-      script: git clone https://aaronmwilliams@bitbucket.org/aaronmwilliams/user-exercises-restassured-testing.git
+      script:
+        - git clone https://aaronmwilliams@bitbucket.org/aaronmwilliams/user-exercises-restassured-testing.git
+        - cd user-exercises-restassured-testing
+        - ./gradlew build
 
     - stage: "Docker Build"
       script:
