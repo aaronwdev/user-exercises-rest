@@ -7,8 +7,13 @@ jdk:
 services:
   - docker
 
-script:
-  - mvn test "-Dtest=*UnitTest.java"
-  - mvn test "-Dtest=*IntegrationTest.java"
-  - docker build -f Dockerfile -t user-exercises-rest .
-  - docker run -d -p 8080:8080 user-exercises-rest
+jobs:
+  include:
+    - stage: "Unit Tests"
+      name: "Unit Tests"
+      script: mvn test "-Dtest=*UnitTest.java"
+      - mvn test "-Dtest=*IntegrationTest.java"
+    - stage: "Docker Build"
+      name: "Build and Run via Docker"
+      script: docker build -f Dockerfile -t user-exercises-rest .
+      - docker run -d -p 8080:8080 user-exercises-rest
