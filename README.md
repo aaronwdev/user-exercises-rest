@@ -3,18 +3,38 @@
 ### Purpose of project
 A very simple Spring rest webservice to help aid other example test frameworks in this repository.
 
-### Installing and Running
+### Running via Docker
+`docker pull aaronmwilliams/user-exercises-rest`
 
-By default port 8080 will be used. 
+then
 
-Import as maven project.
+`docker run -d -p 8080:8080 aaronmwilliams/user-exercises-rest:latest`
 
-To run create a run configuration:
+You can be sure the service is running by hitting an end point E.G. http://localhost:8080/api/users/
+
+### Installing and Running Locally
+Import into your IDE as a maven project.
+
+**Running via IDE**
+
+Create a run configuration:
  Main Class:            "com.williams.userexercisesrest.UserExercisesRestApplication"
  Working Directory:     "[Your Project Location]\user-exercises-rest"
  Classpath:             "user-exercises-rest"
  
- Or you can run in the terminal `mvn spring-boot:run -Drun.jvmArguments="-Dserver.port=8080"`
+**Running via Terminal**
+
+ You can run in the terminal `mvn spring-boot:run -Drun.jvmArguments="-Dserver.port=8080"`
+
+**Running via creating a new Docker image**
+
+`docker build -f Dockerfile -t user-exercises-rest .` 
+
+then
+
+`docker run -d -p 8080:8080 user-exercises-rest`
+
+By default port 8080 will be used. 
 
 ### Running Tests
 All unit tests
@@ -22,7 +42,6 @@ All unit tests
 
 All integration tests
 `mvn test "-Dtest=*IntegrationTest.java"`
-
 
 ### API Documentation
 With the service running you can visit http://localhost:8080/swagger-ui.html
@@ -45,6 +64,11 @@ Rest-assured testing framework: https://bitbucket.org/aaronmwilliams/user-exerci
 
 ### IDE Plugins
 The project uses Lombok. So you will need to install this plugin otherwise you will see compile errors.
+
+### Running CI on Travis
+There is .travis.yml created which runs both the unit and integration tests.
+
+If the tests pass then a new docker image is published to https://hub.docker.com/r/aaronmwilliams/user-exercises-rest/
 
 ### Running Tests on Jenkins
 You can create a Jenkins Build pointing to the `*/jenkinsfile`.
