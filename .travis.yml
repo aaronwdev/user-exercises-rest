@@ -18,7 +18,8 @@ jobs:
 
     - stage: "Docker Build"
       script:
-        - docker build -f Dockerfile -t user-exercises-rest .
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker push $DOCKER_USERNAME/user-exercises-rest:latest
+        - docker build -f Dockerfile -t user-exercises-rest .
+        - docker tag user-exercises-rest $DOCKER_USERNAME/user-exercises-rest
+        - docker push $DOCKER_USERNAME/user-exercises-rest
 
