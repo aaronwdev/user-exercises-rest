@@ -24,7 +24,7 @@ install:
 
 jobs:
   include:
-    - stage: "API Testing"
+    - stage: "API Testing!"
       script:
         - git clone https://aaronmwilliams@bitbucket.org/aaronmwilliams/user-exercises-restassured-testing.git
         - cd user-exercises-restassured-testing
