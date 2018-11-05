@@ -18,14 +18,12 @@ before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - echo "Docker Hub credentials are working"
 
-install:
-  - docker build -f Dockerfile -t ${REPO_NAME} .
-  - docker run -d -p 8080:8080 ${REPO_NAME}
-
 jobs:
   include:
     - stage: "API Testing!"
       script:
+        - docker build -f Dockerfile -t ${REPO_NAME} .
+        - docker run -d -p 8080:8080 ${REPO_NAME}
         - git clone https://aaronmwilliams@bitbucket.org/aaronmwilliams/user-exercises-restassured-testing.git
         - cd user-exercises-restassured-testing
         - ./gradlew build
