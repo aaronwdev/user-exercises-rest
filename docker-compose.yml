@@ -1,0 +1,29 @@
+version: '2.1'
+
+services:
+  restapp:
+    container_name: restapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://restapp:8080/api/users/"]
+      interval: 10s
+      timeout: 3s
+      retries: 90
+    ports:
+      - "8080:8080"
+    networks:
+      - restassured-network
+  user-exercises-restassured-testing:
+    build:
+      context: .
+      dockerfile: DockerfileRestAssured
+    depends_on:
+      restapp:
+        condition: service_healthy
+    networks:
+      - restassured-network
+networks:
+  restassured-network:
+    driver: bridge
