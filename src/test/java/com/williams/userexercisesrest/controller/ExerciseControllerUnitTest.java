@@ -76,4 +76,5 @@ public class ExerciseControllerUnitTest {
         mockMvc.perform(get("/api/exercises/{id}", 1))
                 .andExpect(status().isNotFound());
     }
+
 }

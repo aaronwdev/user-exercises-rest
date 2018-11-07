@@ -1,0 +1,27 @@
+language: java
+install: true
+
+jdk:
+  - oraclejdk8
+
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: "Unit Tests"
+      script: mvn test "-Dtest=*UnitTest.java"
+      name: "Unit Tests"
+    - script: mvn test "-Dtest=*IntegrationTest.java"
+      name: "Integration Tests"
+
+
+    - stage: "Docker Build"
+      script:
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker build -f Dockerfile -t user-exercises-rest .
+        - docker tag user-exercises-rest aaronmwilliams/user-exercises-rest
+        - docker push aaronmwilliams/user-exercises-rest
+      name: "Build and publish new docker image"
+
+
